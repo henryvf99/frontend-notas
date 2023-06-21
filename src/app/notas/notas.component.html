@@ -1,0 +1,26 @@
+<h1>Notas</h1>
+<form (ngSubmit)="agregarNota()">
+  <div>
+    <label for="titulo">Título</label>
+    <input type="text" id="titulo" [(ngModel)]="notaData.titulo" name="titulo" required>
+  </div>
+  <div>
+    <label for="contenido">Contenido</label>
+    <textarea id="contenido" [(ngModel)]="notaData.contenido" name="contenido" required></textarea>
+  </div>
+  <button type="submit">Agregar nota</button>
+</form>
+<table>
+  <thead>
+  <tr>
+    <th>Título</th>
+    <th>Contenido</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let nota of notas">
+    <td>{{ nota.titulo }}</td>
+    <td>{{ nota.contenido }}</td>
+  </tr>
+  </tbody>
+</table>
