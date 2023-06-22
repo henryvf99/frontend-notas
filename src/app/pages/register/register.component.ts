@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {RegisterService} from "../../services/register/register.service";
 
 @Component({
   selector: 'app-register',
@@ -11,16 +12,23 @@ export class RegisterComponent implements OnInit {
     password: '',
     email: '',
   }
-  constructor() {
+  constructor(private registerService:RegisterService){
   }
 
-  register() {
-    if(this.user.username == '' || this.user.username == null) {
+  register(){
+    if(this.user.username == '' || this.user.username == null){
       alert("El nombre de usuario es requerido");
       return;
     }
-    //this.registerService.añadirUsuario(this.user)
+    this.registerService.añadirUsuario(this.user)
+      .subscribe(res=>{
+        console.log("Registrado!")
+       },error => {
+        console.log(error);
+      })
   }
+
+
   ngOnInit(): void {
 
   }

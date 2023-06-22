@@ -9,6 +9,10 @@ import { NotasComponent } from './pages/notas/notas.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { HeaderComponent } from './shell/header/header.component';
 import { FooterComponent } from './shell/footer/footer.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import {HttpClientModule} from "@angular/common/http"; // Importa el módulo MatSnackBarModule
+
 
 @NgModule({
   declarations: [
@@ -23,7 +27,10 @@ import { FooterComponent } from './shell/footer/footer.component';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MatSnackBarModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
