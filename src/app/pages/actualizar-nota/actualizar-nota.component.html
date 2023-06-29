@@ -1,0 +1,19 @@
+<div class="notas-container">
+
+  <form>
+
+    <div>
+      <label for="titulo">Título</label>
+      <input type="text" id="titulo" [(ngModel)] = "titulo" name="titulo" required>
+    </div>
+
+    <div>
+      <label for="descripcion">Descripcion</label>
+      <textarea id="descripcion" [(ngModel)] = "descripcion" name="descripcion" required></textarea>
+    </div>
+
+    <button (click)="update()" type="button">Actualizar nota</button>
+
+  </form>
+
+</div>

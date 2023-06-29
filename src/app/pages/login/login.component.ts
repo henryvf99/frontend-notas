@@ -39,15 +39,16 @@ export class LoginComponent implements OnInit {
     }
     this.loginService.generateToken(this.loginData)
       .subscribe((data:any)=>{
-          console.log(data);
           this.loginService.loginUser(data.token);
+          console.log(data.token);
           this.loginService.getCurrentUser()
             .subscribe((user:any)=>{
               this.loginService.setUser(user);
+              console.log(user.id);
               if(this.loginService.getUserRole() == "ADMIN"){
-                this.adminLoading();
                 //Mostraremos el dashboard del admin
-                //this.router.navigate(['admin'])
+                this.adminLoading();
+                console.log("logeado");
                 this.loginService.loginStatusSubject.next(true);
               }else if(this.loginService.getUserRole() == "NORMAL"){
                 this.normalLoading();
@@ -83,7 +84,7 @@ export class LoginComponent implements OnInit {
     setTimeout(()=>{
 
       //redireccionamos a la pagina principal
-      this.router.navigate(['admin']);
+      this.router.navigate(['/notas']);
       this.loading=false;
     }, 1000)
   }

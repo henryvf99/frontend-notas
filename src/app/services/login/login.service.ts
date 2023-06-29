@@ -25,6 +25,7 @@ export class LoginService {
   //Iniciamos la sesión y establecemos el token en el localStorage
   public loginUser(token:any){
     localStorage.setItem('token',token);
+    console.log(token);
   }
 
 

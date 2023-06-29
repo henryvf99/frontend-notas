@@ -1,28 +1,50 @@
 <div class="notas-container">
+  <p>Hola {{nombreU}} {{apellidoU}}</p>
   <h2>Notas</h2>
   <form (ngSubmit)="agregarNota()">
+
     <div>
       <label for="titulo">Título</label>
-      <input type="text" id="titulo" [(ngModel)]="notaData.titulo" name="titulo" required>
+      <input type="text" id="titulo" [(ngModel)] = "datos.titulo" name="titulo" required>
     </div>
+
     <div>
-      <label for="contenido">Contenido</label>
-      <textarea id="contenido" [(ngModel)]="notaData.contenido" name="contenido" required></textarea>
+      <label for="descripcion">Descripcion</label>
+      <textarea id="descripcion" [(ngModel)] = "datos.descripcion" name="descripcion" required></textarea>
     </div>
-    <button type="submit">Agregar nota</button>
+
+    <button (click)="agregarNota()" type="button">Agregar nota</button>
+
   </form>
-  <table>
-    <thead>
-    <tr>
-      <th>Título</th>
-      <th>Contenido</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let nota of notas">
-      <td>{{ nota.titulo }}</td>
-      <td>{{ nota.contenido }}</td>
-    </tr>
-    </tbody>
+
+  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z9" class="notas">
+
+    <ng-container matColumnDef="titulo">
+            <th class="nota-col" mat-header-cell *matHeaderCellDef mat-sort-header>Titulo</th>
+            <td class="nota-col" mat-cell *matCellDef="let element">{{ element.titulo }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="descripcion">
+            <th class="nota-col" mat-header-cell *matHeaderCellDef mat-sort-header>Descripción</th>
+            <td class="nota-col" mat-cell *matCellDef="let element">{{ element.descripcion }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="acciones">
+              <th class="nota-col" mat-header-cell *matHeaderCellDef>Acciones</th>
+              <td class="nota-col" mat-cell *matCellDef="let element">
+                <button class="boton-upd" matTooltip="Editar" mat-button color="primary" [routerLink]="[element.id, 'edit']">
+                  <mat-icon>ballot</mat-icon>
+                </button>
+                <p></p>
+                <button matTooltip="Eliminar" mat-button color="primary" (click)="delete(element.id)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </td>
+    </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
   </table>
+
 </div>
