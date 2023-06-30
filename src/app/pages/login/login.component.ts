@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
     this.loginService.generateToken(this.loginData)
       .subscribe((data:any)=>{
           this.loginService.loginUser(data.token);
-          console.log(data.token);
+          //console.log(data.token);
           this.loginService.getCurrentUser()
             .subscribe((user:any)=>{
               this.loginService.setUser(user);

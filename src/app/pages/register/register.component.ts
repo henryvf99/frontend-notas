@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {RegisterService} from "../../services/register/register.service";
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register',
@@ -26,8 +27,14 @@ export class RegisterComponent implements OnInit {
     }
     this.registerService.añadirUsuario(this.user).subscribe(
       (res) => {
-        console.log('Registrado!');
-        this.router.navigate(['login']);
+        Swal.fire('Registrado!', 'Ahora inicia sesion', 'success').then(
+          (okay) => {
+            if (okay) {
+              console.log('Registrado!');
+              this.router.navigate(['login']);
+            }
+          }
+        );
       },
       (error) => {
         console.log(error);

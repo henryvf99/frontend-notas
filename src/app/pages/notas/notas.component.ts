@@ -13,6 +13,7 @@ import {LoginService} from '../../services/login/login.service';
 })
 export class NotasComponent implements OnInit {
   user: any = null;
+  userActual: any = null;
 
   nombreU: string = '';
   apellidoU: string = '';
@@ -48,7 +49,9 @@ export class NotasComponent implements OnInit {
   }
 
   getNotas() {
-    this.notaService.listarNotas().subscribe((data: any) => {
+    this.userActual = this.login.getUser();
+    //console.log(this.userActual.id);
+    this.notaService.listarNotasPorUsuario(this.userActual.id).subscribe((data: any) => {
       this.dataSource = new MatTableDataSource(data['body']);
     });
   }

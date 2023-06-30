@@ -17,6 +17,10 @@ export class NotaService {
     return this.http.get<Nota[]>(`${environment.baseUrl}/notas`);
   }
 
+  public listarNotasPorUsuario(id: number){
+    return this.http.get<Nota[]>(`${environment.baseUrl}/notas/listar/${id}`); 
+  }
+
   eliminarNota(id: number) {
     return this.http.delete(`${environment.baseUrl}/notas/${id}`);
   }
