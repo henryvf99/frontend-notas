@@ -1,19 +1,21 @@
 <header>
-  <h1>Aplicación de Notas</h1>
-  <nav>
-    <a *ngIf="!login.isLoggedIn()" routerLink="/login" class="text-base no-underline text-grey-darkest hover:text-blue-dark ml-2">
-      <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" fill="currentColor" class="bi bi-box-arrow-in-right inline" viewBox="0 0 16 16">
-        <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
-        <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
-      </svg>
-      Iniciar Sesión
-    </a>    <a *ngIf="!login.isLoggedIn()" routerLink="/register" routerLinkActive="active">Registrarse</a>
-    <a routerLink="/notas" routerLinkActive="active">Notas</a>
-    <a *ngIf="login.isLoggedIn()" (click)="logout()" routerLink="" class="text-base no-underline text-grey-darkest hover:text-blue-dark ml-2">
-      <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" fill="currentColor" class="inline bi bi-door-open-fill" viewBox="0 0 16 16">
-        <path d="M1.5 15a.5.5 0 0 0 0 1h13a.5.5 0 0 0 0-1H13V2.5A1.5 1.5 0 0 0 11.5 1H11V.5a.5.5 0 0 0-.57-.495l-7 1A.5.5 0 0 0 3 1.5V15H1.5zM11 2h.5a.5.5 0 0 1 .5.5V15h-1V2zm-2.5 8c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z"/>
-      </svg>
-      Salir
-    </a>
+  <nav class="flex items-center justify-between flex-wrap bg-gray-500 p-6">
+    <div class="flex items-center flex-no-shrink text-white mr-6">
+      <span routerLink="" class="font-semibold text-xl tracking-tight cursor-pointer">Aplicación notas en la nube</span>
+    </div>
+    <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+      <div class="text-sm lg:flex-grow">
+        <a routerLink="" *ngIf="!login.isLoggedIn()" class="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4">
+          Iniciar sesión
+        </a>
+        <a routerLink="/register" *ngIf="!login.isLoggedIn()" class="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter hover:text-white mr-4">
+          Registrarse
+        </a>
+      </div>
+      <div>
+        <a routerLink="" *ngIf="login.isLoggedIn()" (click)="logout()" class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal hover:bg-white mt-4 lg:mt-0">Salir</a>
+      </div>
+    </div>
   </nav>
 </header>
+
