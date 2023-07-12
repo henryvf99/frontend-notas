@@ -21,7 +21,7 @@ const routes: Routes = [
     pathMatch: 'full',
     canActivate: [IsLoggedInGuard],
   },
-  { 
+  {
     path: '',
     redirectTo: '/login',
     pathMatch: 'full'

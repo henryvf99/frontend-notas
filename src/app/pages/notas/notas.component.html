@@ -1,50 +1,45 @@
-<div class="notas-container">
-  <p>Hola {{nombreU}} {{apellidoU}}</p>
-  <h2>Notas</h2>
-  <form (ngSubmit)="agregarNota()">
+<div class="flex justify-center items-center h-screen">
+  <div class="notas-container w-full max-w-md">
+    <p class="mb-4">Hola {{nombreU}} {{apellidoU}}</p>
+    <h2 class="text-2xl font-bold mb-4">Notas</h2>
+    <form (ngSubmit)="agregarNota()" class="space-y-4">
+      <div>
+        <label for="titulo" class="block">Título</label>
+        <input type="text" id="titulo" [(ngModel)]="datos.titulo" name="titulo" required class="w-full px-3 py-2 border border-gray-300 rounded-md">
+      </div>
+      <div>
+        <label for="descripcion" class="block">Descripción</label>
+        <textarea id="descripcion" [(ngModel)]="datos.descripcion" name="descripcion" required class="w-full px-3 py-2 border border-gray-300 rounded-md"></textarea>
+      </div>
+      <button (click)="agregarNota()" type="button" class="bg-blue-500 text-white px-4 py-2 rounded-md">Agregar nota</button>
+    </form>
 
-    <div>
-      <label for="titulo">Título</label>
-      <input type="text" id="titulo" [(ngModel)] = "datos.titulo" name="titulo" required>
-    </div>
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z9 notas mt-2">
+      <ng-container matColumnDef="titulo">
+        <th class="nota-col" mat-header-cell *matHeaderCellDef mat-sort-header>Título</th>
+        <td class="nota-col" mat-cell *matCellDef="let element">{{ element.titulo }}</td>
+      </ng-container>
 
-    <div>
-      <label for="descripcion">Descripcion</label>
-      <textarea id="descripcion" [(ngModel)] = "datos.descripcion" name="descripcion" required></textarea>
-    </div>
+      <ng-container matColumnDef="descripcion">
+        <th class="nota-col" mat-header-cell *matHeaderCellDef mat-sort-header>Descripción</th>
+        <td class="nota-col" mat-cell *matCellDef="let element">{{ element.descripcion }}</td>
+      </ng-container>
 
-    <button (click)="agregarNota()" type="button">Agregar nota</button>
+      <ng-container matColumnDef="acciones">
+        <th class="nota-col" mat-header-cell *matHeaderCellDef>Acciones</th>
+        <td class="nota-col" mat-cell *matCellDef="let element">
+          <button class="boton-upd bg-blue-500 text-white px-4 py-2 rounded-md mr-2" matTooltip="Editar" mat-button color="primary" [routerLink]="[element.id, 'edit']">
+            <mat-icon>ballot</mat-icon>
+          </button>
+          <button matTooltip="Eliminar" mat-button color="primary" (click)="delete(element.id)" class="bg-red-500 text-white px-4 py-2 rounded-md">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
 
-  </form>
 
-  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z9" class="notas">
-
-    <ng-container matColumnDef="titulo">
-            <th class="nota-col" mat-header-cell *matHeaderCellDef mat-sort-header>Titulo</th>
-            <td class="nota-col" mat-cell *matCellDef="let element">{{ element.titulo }}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="descripcion">
-            <th class="nota-col" mat-header-cell *matHeaderCellDef mat-sort-header>Descripción</th>
-            <td class="nota-col" mat-cell *matCellDef="let element">{{ element.descripcion }}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="acciones">
-              <th class="nota-col" mat-header-cell *matHeaderCellDef>Acciones</th>
-              <td class="nota-col" mat-cell *matCellDef="let element">
-                <button class="boton-upd" matTooltip="Editar" mat-button color="primary" [routerLink]="[element.id, 'edit']">
-                  <mat-icon>ballot</mat-icon>
-                </button>
-                <p></p>
-                <button matTooltip="Eliminar" mat-button color="primary" (click)="delete(element.id)">
-                  <mat-icon>delete</mat-icon>
-                </button>
-              </td>
-    </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-
-  </table>
-
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
 </div>
